@@ -81,10 +81,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 JwtUser jwtUser = new JwtUser();
                 jwtUser.setUserid(userid);
                 jwtUser.setUsername(username);
-                Map<String, Object> claims = new HashMap<>(2);
+                /*Map<String, Object> claims = new HashMap<>(2);
                 claims.put("sub", jwtUser.getUsername());
                 claims.put("userid", jwtUser.getUserid());
-                claims.put("created", new Date());
+                claims.put("created", new Date());*/
                 String token = jwtTokenUtil.generateToken(jwtUser);
                 //更新redis中的token
                 //首先获取key的有效期，把新的token的有效期设为旧的token剩余的有效期

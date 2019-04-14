@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Autoor:杨文彬
- * @Date:2019/1/22
- * @Description：
- */
+
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*", allowCredentials= "true")

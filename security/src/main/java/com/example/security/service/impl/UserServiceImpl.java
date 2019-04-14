@@ -82,17 +82,17 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public RetResult login(String username, String passwordAES) throws AuthenticationException {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String password = null;
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String password = passwordAES;
         password = AesEncryptUtil.decrypt(passwordAES);
         if (username == null || passwordAES == null) {
             return new RetResult(RetCode.FAIL.getCode(),"用户名，密码不能为空");
         }
         if (! (userMapper.selectUserNameIsExist(username) > 0)){
             return new RetResult(RetCode.FAIL.getCode(),"用户名不存在，请重试");
-        }else if(!encoder.matches(password,userMapper.selectPasswordByUsername(username))) {
+        }/*else if(!encoder.matches(password,userMapper.selectPasswordByUsername(username))) {
             return new RetResult(RetCode.FAIL.getCode(), "密码输入不正确，请重试");
-        }
+        }*/
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         final Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -101,8 +101,8 @@ public class UserServiceImpl implements UserService {
         String jwt = jwtTokenUtil.generateToken(userDetails);
         String userId = userMapper.selectUserByUsername(username).getId();
         //把签发的jwt token存储到redis中，时间根绝你免登录的时间来设置
-        redisUtil.setAndTime(userId,jwt,refreshPeriodTime);
-        return new RetResult(RetCode.SUCCESS.getCode(),"登录成功",jwt);
+        redisUtil.setAndTime(userId, jwt, refreshPeriodTime);
+        return new RetResult(RetCode.SUCCESS.getCode(),"登录成功", jwt);
     }
 
     /**

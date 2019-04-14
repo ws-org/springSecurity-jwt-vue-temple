@@ -15,27 +15,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Autoor:杨文彬
- * @Date:2019/1/4
- * @Description：
- */
 @Slf4j
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
-
-
 
     @Autowired
     private UserMapper userMapper;
     @Override
     public JwtUser loadUserByUsername(String s) throws UsernameNotFoundException {
-
         User user = userMapper.selectByUserName(s);
         if(user == null){
             throw new UsernameNotFoundException(String.format("'%s'.这个用户不存在", s));
         }
-        List<SimpleGrantedAuthority> collect = user.getRoles().stream().map(Role::getRolename).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> collect = user.getRoles().stream()
+                .map(Role::getRolename)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
         return new JwtUser(user.getId(),user.getUsername(), user.getPassword(), user.getState(), collect);
     }
 }

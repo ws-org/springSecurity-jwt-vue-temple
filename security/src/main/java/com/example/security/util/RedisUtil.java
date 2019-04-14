@@ -8,11 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @Autoor:杨文彬
- * @Date:2019/2/21
- * @Description：
- */
+
 @Component
 public class RedisUtil {
     @Autowired

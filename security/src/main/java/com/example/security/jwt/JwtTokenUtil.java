@@ -20,11 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Autoor:杨文彬
- * @Date:2019/1/4
- * @Description：
- */
+
 @Data
 @Slf4j
 @ConfigurationProperties(prefix = "jwt")
@@ -53,7 +49,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
 
-    public static Map parseJwtPayload(String jwt) {
+    public Map parseJwtPayload(String jwt) {
         Assert.hasText(jwt, "JWT String argument cannot be null or empty.");
         String base64UrlEncodedHeader = null;
         String base64UrlEncodedPayload = null;
