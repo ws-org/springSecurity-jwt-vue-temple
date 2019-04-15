@@ -3,11 +3,7 @@ package com.example.security.util;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-/**
- * @Autoor:杨文彬
- * @Date:2019/1/24
- * @Description：
- */
+
 public class SnowFlake {
     /**
      * 起始的时间戳

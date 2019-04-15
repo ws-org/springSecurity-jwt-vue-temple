@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @Autoor:杨文彬
+ * @Autoor:
  * @Date:2019/1/7
  * @Description：菜单类，这个是为了生成权限菜单树形结构
  */

@@ -5,7 +5,6 @@ import com.example.security.entity.Permission;
 import java.util.*;
 
 /**
- * @Autoor:杨文彬
  * @Date:2019/1/7
  * @Description：把数据库中的list转成树形结构
  */

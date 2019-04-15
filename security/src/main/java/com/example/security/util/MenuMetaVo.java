@@ -3,7 +3,6 @@ package com.example.security.util;
 import lombok.Data;
 
 /**
- * @Autoor:杨文彬
  * @Date:2019/1/18
  * @Description：
  */

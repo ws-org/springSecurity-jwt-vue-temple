@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @Autoor:杨文彬
  * @Date:2019/1/8
  * @Description：这个是在User类的基础上添加需要给前端返回用户的角色权限资源列表
  */
