@@ -1,8 +1,6 @@
 package com.example.security.util;
 
 
-import org.apache.commons.codec.binary.Base64;
-
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -128,7 +126,18 @@ public class AesEncryptUtil {
             e.printStackTrace();
             return null;
         }
-
-
     }
+
+    public static String encrypt(String src) {
+        try {
+            byte key[] = "1234567890ABCDEF1234567890ABCDEf".getBytes("utf-8");
+            byte[] encryptResult = encrypt(src, key);
+            String encryptResultStr = byteToHexString(encryptResult);
+            return encryptResultStr;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

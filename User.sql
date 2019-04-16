@@ -83,6 +83,7 @@ CREATE TABLE `Permission` (
   `per_describe` varchar(100) DEFAULT NULL COMMENT '权限描述',
   `per_component` varchar(255) DEFAULT NULL,
   `per_sort` int(11) DEFAULT NULL,
+  per_crtTime timestamp,
   PRIMARY KEY (`per_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

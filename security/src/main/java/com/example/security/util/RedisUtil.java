@@ -19,6 +19,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
+    @Deprecated
     public void set(String key,String value){
         ValueOperations<String,String> valueOperations = redisTemplate.opsForValue();
         valueOperations.set(key,value);
@@ -55,4 +56,7 @@ public class RedisUtil {
         return (String)result;
     }
 
+    public void del( String key) {
+        redisTemplate.delete(key);
+    }
 }

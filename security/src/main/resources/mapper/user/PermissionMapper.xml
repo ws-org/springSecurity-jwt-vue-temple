@@ -53,7 +53,14 @@
         select rp_per_id from RolePermission where rp_role_id = #{rp_role_id}
     </select>
 
-
+    <select id="getPermissionByRoleIds" resultType="com.example.security.entity.Permission">
+        SELECT DISTINCT p.* FROM permission p INNER JOIN rolepermission rp
+        ON p.`per_id` = rp.rp_per_id
+        WHERE rp.`rp_role_id` IN
+        <foreach collection="list" item="role_id" index="index" open="(" close=")" separator=",">
+            #{role_id}
+        </foreach>
+    </select>
 
 
 </mapper>

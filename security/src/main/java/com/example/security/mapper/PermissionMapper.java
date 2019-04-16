@@ -23,6 +23,8 @@ public interface PermissionMapper {
 
     List<String> getPerIdList(Long rp_role_id);
 
+    List<Permission> getPermissionByRoleIds(List<Long> roleIds);
+
     Integer addRP(RolePermission rolePermission);
 
     Integer del(Long rp_role_id);

@@ -92,4 +92,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", cors);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
+
+
 }

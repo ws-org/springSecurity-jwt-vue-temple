@@ -37,18 +37,6 @@ public class JwtTokenUtil implements Serializable {
 
     private static CompressionCodecResolver codecResolver = new DefaultCompressionCodecResolver();
 
-    /**
-     * 从数据声明生成令牌
-     *
-     * @param claims 数据声明
-     * @return 令牌
-     */
-    private String generateToken(Map<String, Object> claims) {
-        Date expirationDate = new Date(System.currentTimeMillis() + expiration);
-        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
-    }
-
-
     public Map parseJwtPayload(String jwt) {
         Assert.hasText(jwt, "JWT String argument cannot be null or empty.");
         String base64UrlEncodedHeader = null;
@@ -109,8 +97,7 @@ public class JwtTokenUtil implements Serializable {
         return map;
     }
 
-
-    /* *
+    /**
      * @Description
      * @Param [val] 从json数据中读取格式化map
      * @Return java.util.Map<java.lang.String,java.lang.Object>
@@ -122,7 +109,6 @@ public class JwtTokenUtil implements Serializable {
             throw new MalformedJwtException("Unable to read JSON value: " + val, e);
         }
     }
-
 
     /**
      * 从令牌中获取数据声明
@@ -138,20 +124,6 @@ public class JwtTokenUtil implements Serializable {
             claims = null;
         }
         return claims;
-    }
-
-    /**
-     * 生成令牌
-     *
-     * @param jwtUser 用户
-     * @return 令牌
-     */
-    public String generateToken(JwtUser jwtUser) {
-        Map<String, Object> claims = new HashMap<>(2);
-        claims.put("sub", jwtUser.getUsername());
-        claims.put("userid", jwtUser.getUserid());
-        claims.put("created", new Date());
-        return generateToken(claims);
     }
 
     /**
@@ -186,6 +158,36 @@ public class JwtTokenUtil implements Serializable {
             userid = null;
         }
         return userid;
+    }
+
+
+
+
+
+
+    /**
+     * 从数据声明生成令牌
+     *
+     * @param claims 数据声明
+     * @return 令牌
+     */
+    private String generateToken(Map<String, Object> claims) {
+        Date expirationDate = new Date(System.currentTimeMillis() + expiration);
+        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
+
+    /**
+     * 生成令牌
+     *
+     * @param jwtUser 用户
+     * @return 令牌
+     */
+    public String generateToken(JwtUser jwtUser) {
+        Map<String, Object> claims = new HashMap<>(2);
+        claims.put("sub", jwtUser.getUsername());
+        claims.put("userid", jwtUser.getUserid());
+        claims.put("created", new Date());
+        return generateToken(claims);
     }
 
     /**

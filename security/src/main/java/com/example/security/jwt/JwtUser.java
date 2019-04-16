@@ -1,5 +1,6 @@
 package com.example.security.jwt;
 
+import com.example.security.vo.PermissionItem;
 import lombok.Data;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +21,8 @@ public class JwtUser implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
+    private Collection<PermissionItem> permissions;
+
     public JwtUser() {
     }
 
@@ -31,6 +34,14 @@ public class JwtUser implements UserDetails {
         this.authorities = authorities;
     }
 
+    public JwtUser(String userid,String username, String password, Integer state, Collection<? extends GrantedAuthority> authorities, Collection<PermissionItem> permissions) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.state = state;
+        this.authorities = authorities;
+        this.permissions = permissions;
+    }
 
     @Override
     public String getUsername() {
